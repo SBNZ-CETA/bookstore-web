@@ -20,6 +20,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { RegistrationComponent } from './modules/user/registration/registration.component';
+import { LoginComponent } from './modules/user/login/login.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { RegistrationComponent } from './modules/user/registration/registration.
     NavbarComponent,
     BookOrderComponent,
     DialogOverviewExampleDialog,
-    RegistrationComponent
+    RegistrationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

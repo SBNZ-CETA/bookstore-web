@@ -37,10 +37,9 @@ export class RegistrationComponent {
 }
 
   registerUser(){
-    console.log(this.registerDto)
     this.userService.registerUser(this.registerDto).subscribe(() => {
       alert('Successfully Created');
-      // this.router.navigate(['/']);
+      this.router.navigate(['/login']);
     });
   }
 

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RegisterUser } from './model';
+import { LoginUser, RegisterUser } from './model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class UserService {
     return this.http.post<{}>(this.apiUrl+'users/register', JSON.stringify(dto), this.httpOptions);
   };
 
-  public loginUser(dto: RegisterUser) {
+  public loginUser(dto: LoginUser) {
     return this.http.post<{}>(this.apiUrl+'login', JSON.stringify(dto), this.httpOptions);
   };
 }
