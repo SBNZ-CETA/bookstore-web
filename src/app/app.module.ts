@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { BooksViewComponent } from './modules/books/books-view/books-view.component';
 import { BookCreateComponent } from './modules/books/book-create/book-create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BooksViewComponent,
-    BookCreateComponent
+    BookCreateComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
