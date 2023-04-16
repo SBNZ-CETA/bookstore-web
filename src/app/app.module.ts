@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BooksViewComponent, DialogOverviewExampleDialog } from './modules/books/books-view/books-view.component';
@@ -21,6 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { RegistrationComponent } from './modules/user/registration/registration.component';
 import { LoginComponent } from './modules/user/login/login.component';
+import { TokenInterceptor } from './utils/tocken.interceptor';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import { LoginComponent } from './modules/user/login/login.component';
     MatDialogModule,
     MatRadioModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,3 +10,7 @@ export interface LoginUser{
    username: string;
    password: string;
 }
+
+export interface JWTResponse{
+   access_token:string;
+}

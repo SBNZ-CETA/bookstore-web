@@ -31,8 +31,12 @@ export class LoginComponent {
   }
 
   loginUser(){
-    this.userService.loginUser(this.LoginDto).subscribe( jwt => {
-      console.log(jwt);
+    this.userService.loginUser(this.LoginDto).subscribe(  data => {
+      localStorage.setItem('token', String(data.access_token));
+      this.router.navigate(['/']);
+    },
+    error => {
+        alert('Invalid username or password');
     });
   }
 
