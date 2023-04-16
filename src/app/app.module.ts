@@ -8,7 +8,7 @@ import { BookCreateComponent } from './modules/books/book-create/book-create.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BookOrderComponent } from './modules/books/book-order/book-order.component';
-import { MatIconModule } from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -19,6 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
+import { RegistrationComponent } from './modules/user/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MatRadioModule } from '@angular/material/radio';
     BookCreateComponent,
     NavbarComponent,
     BookOrderComponent,
-    DialogOverviewExampleDialog
+    DialogOverviewExampleDialog,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
