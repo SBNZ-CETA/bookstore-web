@@ -25,14 +25,24 @@
         Your cart is empty!
       </div>
     </div>
+    <section class="example-section" *ngIf="books.length && !checkout">
+      <label class="example-margin">Payment:</label>
+      <mat-radio-group [(ngModel)]="paymentType">
+        <mat-radio-button class="example-margin" value="DELIVERY">Delivery</mat-radio-button>
+        <mat-radio-button class="example-margin" value="CREDIT_CARD">Credit card</mat-radio-button>
+      </mat-radio-group>
+    </section>
+    <div  *ngIf="books.length && checkout" class="sum">  
+      Payment method: {{paymentType}}
+    </div>
     <div  *ngIf="books.length" class="sum">  
       Total price: {{sum()}}
     </div>
     <div  *ngIf="books.length && checkout" class="sumd">  
-      Discounted price: {{sum()}}
+      Discounted price: {{discountedPrice}}
     </div>
   </div>
   <div *ngIf="books.length" class="centered-button">
     <input type="submit" *ngIf="!checkout" value="Proceede to checkout" class="order-button"  (click)="checkoutBooks()">
-    <input type="submit" *ngIf="checkout" value="Order" class="order-button"  (click)="checkoutBooks()">
+    <input type="submit" *ngIf="checkout" value="Order" class="order-button"  (click)="orderBooks()">
   </div>

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BookOrder, CheckoutDto } from './model';
+import { BookOrder, CreateOrderDto, PaymentType } from './model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,11 @@ export class OrderServiceService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  public orderBook(price: number, id: number, books: BookOrder[]) {
-    return this.http.post<CheckoutDto>(this.apiUrl+'/checkout', JSON.stringify({totalPrice: price, orderItems:books, userId: id}), this.httpOptions);
+  public checkout(price: number, name: string, books: BookOrder[], type: PaymentType) {
+    return this.http.post<CreateOrderDto>(this.apiUrl+'/checkout', JSON.stringify({totalPrice: price, orderItems:books, user: name, paymentType: type}), this.httpOptions);
+  }
+
+  public createOrder(order: any) {
+    return this.http.post<CreateOrderDto>(this.apiUrl, JSON.stringify(order), this.httpOptions);
   }
 }

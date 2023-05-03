@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { BooksServiceService } from '../books-service.service';
-import { Book, BookOrder } from '../model';
-import { ActivatedRoute } from '@angular/router';
+import { Book, BookOrder, CreateOrderDto, PaymentType } from '../model';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrderServiceService } from '../order-service.service';
 
 @Component({
@@ -14,8 +14,11 @@ export class BookOrderComponent {
   public books: BookOrder[] = [];
   public discountedPrice: number = 0;
   public checkout: boolean = false;
+  public paymentType: PaymentType = PaymentType.DELIVERY;
+  public order: any;
 
   constructor(private route: ActivatedRoute,
+    public router: Router,
     private bookService: BooksServiceService, private orderService: OrderServiceService) {}
 
 
@@ -26,33 +29,50 @@ export class BookOrderComponent {
   }
   checkoutBooks(): void{
     this.checkout = true
-    // this.orderService.orderBook(this.sum(), 2, this.books).subscribe(data => {
-    //   this.discountedPrice = data.discountedPrice;
-    //   console.log(data)
-    // })
+    this.orderService.checkout(this.sum(), "qwe", this.books, this.paymentType).subscribe(data => {
+      this.discountedPrice = data.totalPrice;
+      console.log(data)
+      console.log(data.totalPrice)
+      this.order = data
+    })
   }
 
   orderBooks(): void{
+    if (this.order){
+      console.log(this.order)
+      console.log(this.order)
+      this.orderService.createOrder(this.order).subscribe(data => {
+        console.log(data)
+        console.log(data.totalPrice)
+        this.order = data
+      })
+      alert("Your order is successfully CREATED.");
+    }
+    else
+      alert("Your order was NOT CREATED.");
     
+    this.checkout = false;
+    localStorage.clear();
+    this.router.navigate(['./'])
   }
 
-  removeBook(book: Book): void{
+  removeBook(book: BookOrder): void{
     this.books.forEach( (item, index) => {
-      if(item === book) this.books.splice(index,1);
+      if(item.bookId === book.bookId) this.books.splice(index,1);
     });
     localStorage.setItem("items", JSON.stringify(this.books))
   }
 
-  incQuantity(book: Book): void{
-    const index = this.books.findIndex(elem => elem.id === book.id)
+  incQuantity(book: BookOrder): void{
+    const index = this.books.findIndex(elem => elem.bookId === book.bookId)
       
     if(index != -1) 
       this.books[index].quantity += 1;
       localStorage.setItem("items", JSON.stringify(this.books))
   }
 
-  decQuantity(book: Book): void{
-    const index = this.books.findIndex(elem => elem.id === book.id)
+  decQuantity(book: BookOrder): void{
+    const index = this.books.findIndex(elem => elem.bookId === book.bookId)
       
     if(index != -1 && this.books[index].quantity>1) 
       this.books[index].quantity -= 1;

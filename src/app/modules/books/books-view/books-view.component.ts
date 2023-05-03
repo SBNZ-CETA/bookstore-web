@@ -35,12 +35,12 @@ export class BooksViewComponent {
       this.quantity = result;
       this.booksToOrder = JSON.parse(localStorage.getItem("items") || "[]")
 
-      const index = this.booksToOrder.findIndex(elem => elem.id === item.id)
+      const index = this.booksToOrder.findIndex(elem => elem.bookId === item.id)
       
       if(index != -1) 
         this.booksToOrder[index].quantity += this.quantity;
       else
-        this.booksToOrder.push({...item, quantity: this.quantity})
+        this.booksToOrder.push({...item, bookId:item.id, quantity: this.quantity})
 
       console.log(this.booksToOrder)
       localStorage.setItem("items", JSON.stringify(this.booksToOrder))
