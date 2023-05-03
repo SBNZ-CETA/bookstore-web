@@ -1,0 +1,11 @@
+.icons {
+    display: flex;
+  }
+
+  .icon {
+    color: #0cf035;
+    transform: scale(0.7);
+    font-weight: bold;
+  }
+
+  

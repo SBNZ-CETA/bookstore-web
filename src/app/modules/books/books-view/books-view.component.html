@@ -21,10 +21,14 @@
                                 <th scope="col"
                                     class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase light:text-gray-400">
                                     Cost
-                                </th>
+                                </th>  
                                 <th scope="col"
                                     class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase light:text-gray-400">
                                     Category
+                                </th>
+                                <th scope="col"
+                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase light:text-gray-400">
+                                Cart
                                 </th>
                             </tr>
                         </thead>
@@ -42,9 +46,15 @@
                                         <td
                                             class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap light:text-white">
                                           {{book.cost}}</td>
-                                          <td
+                                        <td
                                             class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap light:text-white">
                                           {{book.category.toString()}}</td>
+                                        <td scope="col"
+                                          class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase light:text-gray-400">
+                                          <button (click)="addToCart(book)">
+                                            <mat-icon fontIcon="add_shopping_cart" class="icon"></mat-icon>
+                                          </button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

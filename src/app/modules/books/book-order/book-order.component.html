@@ -1,0 +1,48 @@
+<div class="centered-content">
+
+    <div class="cards">
+      <mat-card *ngFor="let book of books" class="book-card">
+        <mat-card-title class="book-title">
+          {{book.title}}
+          <div class="tag">
+            <mat-icon fontIcon="euro_symbol" class="icon"></mat-icon>
+            <span>{{book.cost}}</span>
+          </div>
+        </mat-card-title>
+        <mat-card-subtitle class="book-subtitle">
+          {{book.writer}}
+        </mat-card-subtitle>
+        <div>
+        <br/>
+        <br/>
+          Quantity: 
+          <button *ngIf="!checkout" (click)="incQuantity(book)"><mat-icon fontIcon="add_circle" class="material-icons green-color"></mat-icon></button>
+          {{book.quantity}} <button *ngIf="!checkout" (click)="decQuantity(book)"><mat-icon fontIcon="remove_circle" class="material-icons red-color"></mat-icon></button>
+        </div>
+        <mat-card-footer *ngIf="!checkout"><hr><button class="rm-from-cart-button" (click)="removeBook(book)">Remove from chart</button></mat-card-footer>
+      </mat-card>
+      <div *ngIf="!books.length" class="no-books">
+        Your cart is empty!
+      </div>
+    </div>
+    <section class="example-section" *ngIf="books.length && !checkout">
+      <label class="example-margin">Payment:</label>
+      <mat-radio-group [(ngModel)]="paymentType">
+        <mat-radio-button class="example-margin" value="DELIVERY">Delivery</mat-radio-button>
+        <mat-radio-button class="example-margin" value="CREDIT_CARD">Credit card</mat-radio-button>
+      </mat-radio-group>
+    </section>
+    <div  *ngIf="books.length && checkout" class="sum">  
+      Payment method: {{paymentType}}
+    </div>
+    <div  *ngIf="books.length" class="sum">  
+      Total price: {{sum()}}
+    </div>
+    <div  *ngIf="books.length && checkout" class="sumd">  
+      Discounted price: {{discountedPrice}}
+    </div>
+  </div>
+  <div *ngIf="books.length" class="centered-button">
+    <input type="submit" *ngIf="!checkout" value="Proceede to checkout" class="order-button"  (click)="checkoutBooks()">
+    <input type="submit" *ngIf="checkout" value="Order" class="order-button"  (click)="orderBooks()">
+  </div>
