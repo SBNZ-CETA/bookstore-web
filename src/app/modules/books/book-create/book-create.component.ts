@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BooksServiceService } from '../books-service.service';
 import { Book, BookCreate } from '../model';
+import { BookCategory } from '../BookCategory';
 
 @Component({
   selector: 'app-book-create',
@@ -17,9 +18,12 @@ export class BookCreateComponent {
     private router: Router
   ) {}
 
+  public category:string = '';
   public titleControl = new FormControl<string>('', Validators.required);
 	public writerControl = new FormControl<string>('', Validators.required);
 	public costControl = new FormControl<number>(0, {nonNullable: true});
+  public categoryControl = new FormControl<string>('', Validators.required);
+  
 
   public validateFields() {
     return this.titleControl.valid &&
@@ -27,7 +31,18 @@ export class BookCreateComponent {
       this.costControl.valid;
   }
 
+  private setCategory() {
+    if(this.category==='Education'){
+      this.book.category = BookCategory.EDUCATION;
+    }else if(this.category==='Fiction'){
+      this.book.category = BookCategory.FICTION;
+    }else if(this.category==='Romance'){
+      this.book.category = BookCategory.ROMANCE;
+    }
+  }
+
   public createBook() {
+    this.setCategory();
     this.bookService.createBook(this.book).subscribe(() => {
       alert('Successfully Created');
       this.router.navigate(['/']);
