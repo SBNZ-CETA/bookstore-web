@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JWTResponse, LoginUser, RegisterUser } from './model';
+import jwtDecode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -23,4 +24,11 @@ export class UserService {
   public loginUser(dto: LoginUser) {
     return this.http.post<JWTResponse>(this.apiUrl+'login', JSON.stringify(dto), this.httpOptions);
   };
+
+  public getUsername(){
+    const jwt:any=localStorage.getItem('token');
+    const decoded = jwtDecode(jwt);
+    
+  }
+
 }
