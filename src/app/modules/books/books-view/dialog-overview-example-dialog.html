@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Chose quantity</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <input matInput type="number" min="1" placeholder="1" [(ngModel)]="data.quantity">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.quantity" cdkFocusInitial>Add to cart</button>
+</div>
