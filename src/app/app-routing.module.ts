@@ -10,8 +10,7 @@ const routes: Routes = [
   {path: '', component: BooksViewComponent},
   {path: 'create', component: BookCreateComponent},
   {path: 'order', component: BookOrderComponent},
-  {path: 'register', component: RegistrationComponent}
-
+  {path: 'register', component: RegistrationComponent},
   {path: 'login',   component:LoginComponent}
 ];
 
