@@ -19,7 +19,7 @@ export interface BookOrder extends BookCreate {
 
 export interface CreateOrderDto {
   items: BookOrder;
-  user: string;
+  username: string;
   totalPrice: number;
   paymentType: PaymentType;
 }
