@@ -16,7 +16,7 @@ export class OrderServiceService {
   };
 
   public checkout(price: number, name: string, books: BookOrder[], type: PaymentType) {
-    return this.http.post<CreateOrderDto>(this.apiUrl+'/checkout', JSON.stringify({totalPrice: price, orderItems:books, user: name, paymentType: type}), this.httpOptions);
+    return this.http.post<CreateOrderDto>(this.apiUrl+'/checkout', JSON.stringify({totalPrice: price, orderItems:books, username: name, paymentType: type}), this.httpOptions);
   }
 
   public createOrder(order: any) {

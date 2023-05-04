@@ -25,10 +25,10 @@ export class UserService {
     return this.http.post<JWTResponse>(this.apiUrl+'login', JSON.stringify(dto), this.httpOptions);
   };
 
-  public getUsername(){
+  public getUsername():string{
     const jwt:any=localStorage.getItem('token');
-    const decoded = jwtDecode(jwt);
-    
+    const decoded:any = jwtDecode(jwt);
+    return decoded['sub']
   }
 
 }

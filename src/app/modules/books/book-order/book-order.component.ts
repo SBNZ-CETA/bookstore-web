@@ -3,6 +3,7 @@ import { BooksServiceService } from '../books-service.service';
 import { Book, BookOrder, CreateOrderDto, PaymentType } from '../model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderServiceService } from '../order-service.service';
+import { UserService } from '../../user/user.service';
 
 @Component({
   selector: 'app-book-order',
@@ -19,7 +20,8 @@ export class BookOrderComponent {
 
   constructor(private route: ActivatedRoute,
     public router: Router,
-    private bookService: BooksServiceService, private orderService: OrderServiceService) {}
+    private bookService: BooksServiceService, private orderService: OrderServiceService,
+    private userService:UserService) {}
 
 
   ngOnInit() {
@@ -29,7 +31,7 @@ export class BookOrderComponent {
   }
   checkoutBooks(): void{
     this.checkout = true
-    this.orderService.checkout(this.sum(), "qwe", this.books, this.paymentType).subscribe(data => {
+    this.orderService.checkout(this.sum(), this.userService.getUsername(), this.books, this.paymentType).subscribe(data => {
       this.discountedPrice = data.totalPrice;
       console.log(data)
       console.log(data.totalPrice)
@@ -52,7 +54,7 @@ export class BookOrderComponent {
       alert("Your order was NOT CREATED.");
     
     this.checkout = false;
-    localStorage.clear();
+    localStorage.removeItem("items");
     this.router.navigate(['./'])
   }
 
