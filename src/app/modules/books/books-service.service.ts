@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Book, BookCreate } from './model';
+import { Book, BookCreate, BookReview } from './model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,17 +9,21 @@ export class BooksServiceService {
 
   constructor(private http: HttpClient) {}
 
-  private readonly apiUrl = 'http://localhost:8080/api/books';
+  private readonly apiUrl = 'http://localhost:8080/api';
 
   private readonly  httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   public getBooks() {
-    return this.http.get<Book[]>(this.apiUrl, this.httpOptions);
+    return this.http.get<Book[]>(this.apiUrl+'/books', this.httpOptions);
   }
 
   public createBook(book: BookCreate) {
-    return this.http.post<{}>(this.apiUrl, JSON.stringify(book), this.httpOptions);
+    return this.http.post<{}>(this.apiUrl+'/books', JSON.stringify(book), this.httpOptions);
+  }
+
+  public rateBook(book: any) {
+    return this.http.post<BookReview>(this.apiUrl+'/review', JSON.stringify(book), this.httpOptions);
   }
 }

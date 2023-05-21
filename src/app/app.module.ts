@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BooksViewComponent, DialogOverviewExampleDialog } from './modules/books/books-view/books-view.component';
+import { BooksViewComponent, DialogOverviewExampleDialog, DialogRateABook } from './modules/books/books-view/books-view.component';
 import { BookCreateComponent } from './modules/books/book-create/book-create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -31,6 +31,7 @@ import { TokenInterceptor } from './utils/tocken.interceptor';
     NavbarComponent,
     BookOrderComponent,
     DialogOverviewExampleDialog,
+    DialogRateABook,
     RegistrationComponent,
     LoginComponent
   ],
