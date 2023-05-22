@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Book, BookCreate, BookReview } from './model';
+import { Book, BookCreate, BookOrder, BookReview } from './model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +25,9 @@ export class BooksServiceService {
 
   public rateBook(book: any) {
     return this.http.post<BookReview>(this.apiUrl+'/review', JSON.stringify(book), this.httpOptions);
+  }
+
+  public getRecommendedBooksUnauthorized(){
+    return this.http.get<BookOrder[]>(this.apiUrl+'/recommend-unauthorized', this.httpOptions);
   }
 }

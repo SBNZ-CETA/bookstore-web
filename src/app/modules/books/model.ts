@@ -6,6 +6,12 @@ export interface BookCreate {
   cost: number;
   category: BookCategory;
   rating: number;
+  publishDate: Date;
+  releaseDate: Date;
+  rateCount: number;
+  new: boolean;
+  popular: boolean;
+  rateUnit: string;
 }
 
 export interface Book extends BookCreate {

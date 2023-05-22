@@ -1,0 +1,43 @@
+<div class="centered-content">
+
+    <div class="cards">
+      <mat-card *ngFor="let book of books" class="book-card">
+        <mat-card-title class="book-title">
+          {{book.title}}
+          <div class="tag">
+            <mat-icon fontIcon="euro_symbol" class="icon"></mat-icon>
+            <span>{{book.cost}}</span>
+          </div>
+          <div class="tag-good"  *ngIf="book.rateUnit == 'GOOD'">
+            <mat-icon fontIcon="star" class="icon-good" *ngIf="book.rateUnit == 'GOOD'"></mat-icon>
+            <span>{{book.rating}} ({{book.rateCount}})</span>
+          </div>
+          <div class="tag-bad" *ngIf="book.rateUnit == 'BAD'">
+            <mat-icon fontIcon="star" class="icon-bad" *ngIf="book.rateUnit == 'BAD'"></mat-icon>
+            <span>{{book.rating}} ({{book.rateCount}})</span>
+          </div>
+          <div class="tag" *ngIf="book.rateUnit == 'NEUTRAL'">
+            <mat-icon fontIcon="star" class="icon" *ngIf="book.rateUnit == 'NEUTRAL'"></mat-icon>
+            <span>{{book.rating}} ({{book.rateCount}})</span>
+          </div>
+          <div class="tag-new" *ngIf="book.new">
+              <mat-icon fontIcon="fiber_new" class="icon-new"></mat-icon>
+          </div>
+          <div class="tag-pop" *ngIf="book.popular">
+                <mat-icon fontIcon="people" class="icon-pop"></mat-icon>
+          </div>
+        </mat-card-title>
+        
+        <mat-card-subtitle class="book-subtitle">
+          {{book.writer}}
+        </mat-card-subtitle>
+        Publish date: {{book.publishDate| date:'mediumDate'}}
+        <br/>
+        Release date: {{book.releaseDate| date:'mediumDate'}}
+        <mat-card-footer><hr><button class="rm-from-cart-button" (click)="addToCart(book)">Add to chart</button></mat-card-footer>
+      </mat-card>
+      <div *ngIf="!books.length" class="no-books">
+        There are no recommended books for you!
+      </div>
+    </div>
+  </div>

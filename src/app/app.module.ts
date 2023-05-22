@@ -22,6 +22,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { RegistrationComponent } from './modules/user/registration/registration.component';
 import { LoginComponent } from './modules/user/login/login.component';
 import { TokenInterceptor } from './utils/tocken.interceptor';
+import { RecommendationPageComponent } from './modules/books/recommendation-page/recommendation-page.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { TokenInterceptor } from './utils/tocken.interceptor';
     DialogOverviewExampleDialog,
     DialogRateABook,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    RecommendationPageComponent
   ],
   imports: [
     BrowserModule,

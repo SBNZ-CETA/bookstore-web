@@ -5,13 +5,15 @@ import { BookOrderComponent } from './modules/books/book-order/book-order.compon
 import { BooksViewComponent } from './modules/books/books-view/books-view.component';
 import { RegistrationComponent } from './modules/user/registration/registration.component';
 import { LoginComponent } from './modules/user/login/login.component';
+import { RecommendationPageComponent } from './modules/books/recommendation-page/recommendation-page.component';
 
 const routes: Routes = [
   {path: '', component: BooksViewComponent},
   {path: 'create', component: BookCreateComponent},
   {path: 'order', component: BookOrderComponent},
   {path: 'register', component: RegistrationComponent},
-  {path: 'login',   component:LoginComponent}
+  {path: 'login',   component:LoginComponent},
+  {path: 'recommendations', component:RecommendationPageComponent}
 ];
 
 @NgModule({
