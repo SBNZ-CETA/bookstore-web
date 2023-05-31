@@ -34,7 +34,9 @@
                                     class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase light:text-gray-400">
                                     Cart
                                 </th>
-                                <th scope="col"
+                                <th 
+                                    *ngIf="token"
+                                    scope="col"
                                     class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase light:text-gray-400">
                                     Rate
                                 </th>
@@ -66,7 +68,7 @@
                                             <mat-icon fontIcon="add_shopping_cart" class="icon"></mat-icon>
                                           </button>
                                         </td>
-                                        <td scope="col"
+                                        <td *ngIf="token" scope="col"
                                           class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase light:text-gray-400">
                                           <button (click)="rateBook(book)">
                                             <mat-icon fontIcon="rate_review" class="icon"></mat-icon>
