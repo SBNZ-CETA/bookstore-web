@@ -19,6 +19,7 @@ export class RecommendationPageComponent {
   public books: BookOrder[] = [];
   public quantity: number = 1;
   public booksToOrder: BookOrder[] = [];
+  public token: string | null='';
 
   constructor(private route: ActivatedRoute,
     public router: Router,
@@ -52,7 +53,13 @@ export class RecommendationPageComponent {
   }
 
   ngOnInit() {
-    this.bookService.getRecommendedBooks().subscribe(response => this.books = response);
+      this.token = localStorage.getItem('token');
+      if (this.token){
+        this.bookService.getRecommendedBooks().subscribe(response => this.books = response);
+      }
+      else{
+        this.bookService.getRecommendedBooksUnauthorized().subscribe(response => this.books = response);
+      }
   }
 
   addToCart(item: BookOrder):void{
