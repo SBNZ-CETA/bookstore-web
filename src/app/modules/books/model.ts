@@ -1,11 +1,9 @@
-import { BookCategory } from "./BookCategory";
-
 export interface BookCreate {
   title: string;
-  writer: string;
+  writer: WriterDto;
   cost: number;
-  category: BookCategory;
-  rating: number;
+  category: GenreDto;
+  rating: RatingDto;
   publishDate: Date;
   releaseDate: Date;
   rateCount: number;
@@ -18,11 +16,28 @@ export interface Book extends BookCreate {
   id: number;
 }
 
+export interface WriterDto {
+  id: number;
+  name: string;
+  surname: string;
+}
+
+export interface GenreDto {
+  id: number;
+  name: string;
+}
+
+export interface RatingDto {
+  id: number;
+  user_id: number;
+  book_id: number;
+  rate: number;
+}
 
 export interface BookOrder extends BookCreate {
   bookId: number;
   quantity: number;
-} 
+}
 
 export interface CreateOrderDto {
   items: BookOrder;

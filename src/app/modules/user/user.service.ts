@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JWTResponse, LoginUser, RegisterUser } from './model';
 import jwtDecode from 'jwt-decode';
+import { GenreDto } from '../books/model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class UserService {
 
   public loginUser(dto: LoginUser) {
     return this.http.post<JWTResponse>(this.apiUrl+'auth', JSON.stringify(dto), this.httpOptions);
+  };
+
+  public getGenres() {
+    return this.http.get<GenreDto[]>(this.apiUrl + 'genres', this.httpOptions);
   };
 
   public getUsername():string{

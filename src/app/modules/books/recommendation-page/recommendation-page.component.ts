@@ -39,8 +39,8 @@ export class RecommendationPageComponent {
       this.booksToOrder = JSON.parse(localStorage.getItem("items") || "[]")
 
       const index = this.booksToOrder.findIndex(elem => elem.title === item.title)
-      
-      if(index != -1) 
+
+      if(index != -1)
         this.booksToOrder[index].quantity += this.quantity;
       else
         this.booksToOrder.push({...item, bookId:item.bookId, quantity: this.quantity})
@@ -52,9 +52,7 @@ export class RecommendationPageComponent {
   }
 
   ngOnInit() {
-    // this.bookService.getBooks().subscribe(response => this.books = response);
-    // this.books = JSON.parse(localStorage.getItem("items") || "")
-    this.bookService.getRecommendedBooksUnauthorized().subscribe(response => this.books = response);
+    this.bookService.getRecommendedBooks().subscribe(response => this.books = response);
   }
 
   addToCart(item: BookOrder):void{
