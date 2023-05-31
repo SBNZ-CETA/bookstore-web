@@ -23,6 +23,7 @@ export class BooksViewComponent {
   public booksToOrder: BookOrder[] = [];
   public quantity: number = 1;
   public rate: number = 5;
+  public token: any = localStorage.getItem("token");
 
   constructor(
     private bookService: BooksServiceService,
