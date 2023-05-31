@@ -30,4 +30,8 @@ export class BooksServiceService {
   public getRecommendedBooks(){
     return this.http.get<BookOrder[]>(this.apiUrl+'/recommendations', this.httpOptions);
   }
+
+  public getRecommendedBooksUnauthorized(){
+      return this.http.get<BookOrder[]>(this.apiUrl+'/recommend-unauthorized', this.httpOptions);
+  }
 }
