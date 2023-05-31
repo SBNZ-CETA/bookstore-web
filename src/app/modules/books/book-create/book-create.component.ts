@@ -23,7 +23,7 @@ export class BookCreateComponent {
 	public writerControl = new FormControl<string>('', Validators.required);
 	public costControl = new FormControl<number>(0, {nonNullable: true});
   public categoryControl = new FormControl<string>('', Validators.required);
-  
+
 
   public validateFields() {
     return this.titleControl.valid &&
@@ -32,13 +32,7 @@ export class BookCreateComponent {
   }
 
   private setCategory() {
-    if(this.category==='Education'){
-      this.book.category = BookCategory.EDUCATION;
-    }else if(this.category==='Fiction'){
-      this.book.category = BookCategory.FICTION;
-    }else if(this.category==='Romance'){
-      this.book.category = BookCategory.ROMANCE;
-    }
+    this.book.category.name = this.category
   }
 
   public createBook() {

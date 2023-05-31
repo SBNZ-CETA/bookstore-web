@@ -21,7 +21,7 @@
                                 <th scope="col"
                                     class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase light:text-gray-400">
                                     Cost
-                                </th>  
+                                </th>
                                 <th scope="col"
                                     class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase light:text-gray-400">
                                     Category
@@ -50,16 +50,16 @@
                                           {{book.title}}</td>
                                         <td
                                             class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap light:text-white">
-                                          {{book.writer}}</td>
+                                          {{book.writer.name + " " + book.writer.surname}}</td>
                                         <td
                                             class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap light:text-white">
                                           {{book.cost}}</td>
                                         <td
                                             class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap light:text-white">
-                                          {{book.category.toString()}}</td>
+                                          {{book.category ? book.category.name : "None"}}</td>
                                         <td
                                             class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap light:text-white">
-                                          {{book.rating}}</td>
+                                          {{book.rating.rate}}</td>
                                         <td scope="col"
                                           class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase light:text-gray-400">
                                           <button (click)="addToCart(book)">

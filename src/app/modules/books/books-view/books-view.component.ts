@@ -42,8 +42,8 @@ export class BooksViewComponent {
       this.booksToOrder = JSON.parse(localStorage.getItem("items") || "[]")
 
       const index = this.booksToOrder.findIndex(elem => elem.bookId === item.id)
-      
-      if(index != -1) 
+
+      if(index != -1)
         this.booksToOrder[index].quantity += this.quantity;
       else
         this.booksToOrder.push({...item, bookId:item.id, quantity: this.quantity})
@@ -69,7 +69,10 @@ export class BooksViewComponent {
   }
 
   ngOnInit() {
-    this.bookService.getBooks().subscribe(response => this.books = response);
+   this.bookService.getBooks().subscribe(response => {
+      this.books = response
+      console.log(response);
+   });
   }
 
   addToCart(item: Book):void{
