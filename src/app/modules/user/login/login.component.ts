@@ -32,6 +32,7 @@ export class LoginComponent {
 
   loginUser(){
     this.userService.loginUser(this.LoginDto).subscribe(  data => {
+      console.log(data)
       localStorage.setItem('token', String(data.access_token));
       this.router.navigate(['/']);
     },

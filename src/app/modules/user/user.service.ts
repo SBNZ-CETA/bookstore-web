@@ -22,7 +22,7 @@ export class UserService {
   };
 
   public loginUser(dto: LoginUser) {
-    return this.http.post<JWTResponse>(this.apiUrl+'login', JSON.stringify(dto), this.httpOptions);
+    return this.http.post<JWTResponse>(this.apiUrl+'auth', JSON.stringify(dto), this.httpOptions);
   };
 
   public getUsername():string{
