@@ -25,7 +25,6 @@ export class BookOrderComponent {
 
 
   ngOnInit() {
-    // this.bookService.getBooks().subscribe(response => this.books = response);
     this.books = JSON.parse(localStorage.getItem("items") || "")
     
   }

@@ -8,6 +8,10 @@ export interface DialogData {
   quantity: number;
 }
 
+export interface DialogRateData {
+  rate: number;
+}
+
 @Component({
   selector: 'app-books-view',
   templateUrl: './books-view.component.html',
@@ -18,11 +22,13 @@ export class BooksViewComponent {
   public books: Book[] = [];
   public booksToOrder: BookOrder[] = [];
   public quantity: number = 1;
+  public rate: number = 5;
 
   constructor(
     private bookService: BooksServiceService,
     public router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public dialogRate: MatDialog
   ) {}
 
   openDialog(item: Book): void {
@@ -48,6 +54,20 @@ export class BooksViewComponent {
     });
   }
 
+  openDialogRate(item: Book): void {
+    const dialogRefRate = this.dialogRate.open(DialogRateABook, {
+      data: {rate: this.rate},
+    });
+
+    dialogRefRate.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.rate = result;
+      console.log(result, item.id);
+      this.bookService.rateBook({bookId: item.id, rate: this.rate}).subscribe(response => console.log(response));
+      this.bookService.getBooks().subscribe(response => this.books = response);
+    });
+  }
+
   ngOnInit() {
     this.bookService.getBooks().subscribe(response => this.books = response);
   }
@@ -55,6 +75,10 @@ export class BooksViewComponent {
   addToCart(item: Book):void{
     console.log(item.title)
     this.openDialog(item);
+  }
+
+  rateBook(item: Book): void{
+    this.openDialogRate(item);
   }
 
 }
@@ -71,5 +95,20 @@ export class DialogOverviewExampleDialog {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+}
+
+@Component({
+  selector: 'dialog-rate-a-book',
+  templateUrl: 'dialog-rate-a-book.html',
+})
+export class DialogRateABook {
+  constructor(
+    public dialogRefRate: MatDialogRef<DialogRateABook>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogRateData,
+  ) {}
+
+  onNoClick(): void {
+    this.dialogRefRate.close();
   }
 }

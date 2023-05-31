@@ -5,6 +5,13 @@ export interface BookCreate {
   writer: string;
   cost: number;
   category: BookCategory;
+  rating: number;
+  publishDate: Date;
+  releaseDate: Date;
+  rateCount: number;
+  new: boolean;
+  popular: boolean;
+  rateUnit: string;
 }
 
 export interface Book extends BookCreate {
@@ -22,6 +29,11 @@ export interface CreateOrderDto {
   username: string;
   totalPrice: number;
   paymentType: PaymentType;
+}
+
+export interface BookReview{
+  bookId: number;
+  rate: number;
 }
 
 export enum PaymentType{
