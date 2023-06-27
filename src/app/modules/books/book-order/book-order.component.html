@@ -45,6 +45,20 @@
     <div  *ngIf="books.length && checkout" class="sumd">  
       Discounted price: {{discountedPrice}}
     </div>
+    <div *ngIf="cardInputFlag && order.paymentType=='CREDIT_CARD'" class="ml-[10%] max-w-md flex flex-col">
+    <mat-form-field appearance="fill">
+      <input matInput type="text" placeholder="Card number" [(ngModel)]="transactionDto.senderAccountId">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <input matInput type="text" placeholder="Ccv" [(ngModel)]="transactionDto.ccv">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <input matInput type="date" placeholder="Expiration date" [(ngModel)]="expDate">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <input matInput type="text" placeholder="Name" [(ngModel)]="transactionDto.ownerName">
+    </mat-form-field>
+    </div>
   </div>
   <div *ngIf="books.length" class="centered-button">
     <input type="submit" *ngIf="!checkout" value="Proceede to checkout" class="order-button"  (click)="checkoutBooks()">
