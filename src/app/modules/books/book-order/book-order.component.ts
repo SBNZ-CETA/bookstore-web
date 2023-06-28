@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BooksServiceService } from '../books-service.service';
-import { Book, BookOrder, CreateOrderDto, PaymentType } from '../model';
+import { Book, BookOrder, CreateOrderDto, PaymentType, TransactionDto } from '../model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderServiceService } from '../order-service.service';
 import { UserService } from '../../user/user.service';
@@ -17,6 +17,9 @@ export class BookOrderComponent {
   public checkout: boolean = false;
   public paymentType: PaymentType = PaymentType.DELIVERY;
   public order: any;
+  public transactionDto: TransactionDto = {} as TransactionDto;
+  public cardInputFlag: boolean = false;
+  public expDate: Date = new Date();
 
   constructor(private route: ActivatedRoute,
     public router: Router,
@@ -35,11 +38,18 @@ export class BookOrderComponent {
       console.log(data)
       console.log(data.totalPrice)
       this.order = data
+      this.cardInputFlag = true;
     })
   }
 
   orderBooks(): void{
     if (this.order){
+      this.transactionDto.expirationDate = new Date(this.expDate);
+      this.transactionDto.expirationDate.setHours(0,0,0,0)
+      this.transactionDto.location = window.location.hostname
+      this.transactionDto.receiverAccountId = 4
+      this.transactionDto.amount = this.order.totalPrice
+      this.order.transactionDto = this.transactionDto
       console.log(this.order)
       console.log(this.order)
       this.orderService.createOrder(this.order).subscribe(data => {

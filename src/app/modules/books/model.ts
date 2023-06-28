@@ -10,6 +10,7 @@ export interface BookCreate {
   new: boolean;
   popular: boolean;
   rateUnit: string;
+  sellerBankAccountId: number;
 }
 
 export interface Book extends BookCreate {
@@ -44,6 +45,17 @@ export interface CreateOrderDto {
   username: string;
   totalPrice: number;
   paymentType: PaymentType;
+  transactionDto: TransactionDto;
+}
+
+export interface TransactionDto{
+  senderAccountId: number;
+  receiverAccountId: number;
+  amount: number;
+  location: string;
+  ccv: number;
+  ownerName: string;
+  expirationDate: Date;
 }
 
 export interface BookReview{
